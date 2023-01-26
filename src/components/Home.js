@@ -7,6 +7,8 @@ const Home = () => {
     <motion.div className="home container"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      transition={{ delay: .5, duration: 2 }}
+      // $ duration solo para type 'tween' (default)
     >
       <h2>
         Bienvenido a Pizza Joint

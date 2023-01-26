@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
 const Base = ({ addBase, pizza }) => {
-  const bases = ['Classic', 'Thin & Crispy', 'Thick Crust'];
+  const bases = ['Clasica', 'Delgada & Crujiente', 'Corteza Gruesa'];
 
   return (
-    <div className="base container">
+    <motion.div className="base container"
+      initial={{ x: '100vw' }}
+      animate={{ x: 0 }}
+      transition={{ delay: .3, type: 'spring' }}
+    >
 
       <h3>Paso 1: Elige Tu Base</h3>
       <ul>
@@ -22,8 +26,10 @@ const Base = ({ addBase, pizza }) => {
 
       {pizza.base && (
         <motion.div className="next"
-          initial={{ y: -10 }}
-          animate={{ y: 0 }}
+          initial={{ x: '-100vw' }}
+          animate={{ x: 0 }}
+          transition={{ type: 'spring' }}
+          // $ stiffness para tipo spring
         >
           <Link to="/toppings">
             <button>Next</button>
@@ -31,7 +37,7 @@ const Base = ({ addBase, pizza }) => {
         </motion.div>
       )}
 
-    </div>
+    </motion.div>
   )
 }
 
