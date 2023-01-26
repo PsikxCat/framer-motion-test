@@ -2,14 +2,47 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
+// nombres de variable y sus propiedades son random
+// hidden corresponde a los valores en initial, visible a los valores en animate & transition
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: '100vw'
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: .3,
+      type: 'spring'
+    }
+  }
+}
+
+const nextVariants = {
+  in: {
+    x: '-100vw'
+  },
+  out: {
+    x: 0,
+    transition: {
+      type: 'spring'
+    }
+  }
+}
+
 const Base = ({ addBase, pizza }) => {
   const bases = ['Clasica', 'Delgada & Crujiente', 'Corteza Gruesa'];
 
   return (
     <motion.div className="base container"
-      initial={{ x: '100vw' }}
-      animate={{ x: 0 }}
-      transition={{ delay: .3, type: 'spring' }}
+      // initial={{ opacity: 0, x: '100vw' }}
+      // animate={{ opacity: 1, x: 0 }}
+      // transition={{ delay: .3, type: 'spring' }}
+      variants={containerVariants}
+      // @ particularmente util cuando muchas propiedades dentro de init o animate
+      initial='hidden'
+      animate='visible'
     >
 
       <h3>Paso 1: Elige Tu Base</h3>
@@ -30,10 +63,13 @@ const Base = ({ addBase, pizza }) => {
 
       {pizza.base && (
         <motion.div className="next"
-          initial={{ x: '-100vw' }}
-          animate={{ x: 0 }}
-          transition={{ type: 'spring' }}
-          // $ stiffness para tipo spring
+          // initial={{ x: '-100vw' }}
+          // animate={{ x: 0 }}
+          // transition={{ type: 'spring' }}
+          // // $ stiffness para tipo spring
+          variants={nextVariants}
+          initial='in'
+          animate='out'
         >
           <Link to="/toppings">
             <motion.button
