@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 const Home = () => {
   return (
     <motion.div className="home container"
-      animate={{ rotateY: 360, marginTop: 150 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       <h2>
         Bienvenido a Pizza Joint
