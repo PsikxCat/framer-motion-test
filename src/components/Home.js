@@ -2,6 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
+const containerVariants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: .7,
+      duration: 3
+      // duration solo para type 'tween' (default) // // //
+    }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeInOut'
+    }
+  }
+}
+
 const buttonVariants = {
   visible: {
     scale: 1.05,
@@ -31,10 +51,10 @@ const buttonVariants = {
 const Home = () => {
   return (
     <motion.div className="home container"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: .7, duration: 3 }}
-      // duration solo para type 'tween' (default) // // //
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      exit='exit'
     >
       <h2>
         Bienvenido a Pizza Joint

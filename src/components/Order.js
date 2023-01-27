@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -20,6 +21,12 @@ const containerVariants = {
       staggerChildren: 1
       // & profundizar staggerChildren !!
     }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeInOut'
+    }
   }
 }
 
@@ -32,16 +39,61 @@ const childrenVariants = {
   }
 }
 
+const buttonVariants = {
+  hidden: {
+    opacity: 0,
+    x: '100vw',
+    y: 30
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 30,
+    scale: 1.05,
+    boxShadow: '0 3px 9px 1px rgba(255, 255, 255, .6)',
+    transition: {
+      delay: 2,
+      mass: 1.5
+    }
+  },
+  hover: {
+    scale: 1.1,
+    textShadow: '0 1px 4px rgba(255, 255, 255, .8)',
+    boxShadow: '0 6px 16px 2px rgba(255, 255, 255, .3)',
+    transition: {
+      yoyo: 4,
+      duration: .1
+    }
+  }
+}
+
+
 const Order = ({ pizza }) => {
+  // const [showTitle, setShowTitle] = useState(true);
+
+  // setTimeout(() => {
+  //   setShowTitle(false);
+  // }, 4000);
+
   return (
     <motion.div className="container order"
       variants={containerVariants}
       initial='hidden'
       animate='visible'
+      exit='exit'
     >
-      <h2>
-        &#10003; Gracias por tu compra &#9787;
-      </h2>
+      {/* // # forma de animar la salida de elementos que se borrar del DOM */}
+      {/* <AnimatePresence>
+        {showTitle && (
+          <motion.h2
+            exit={{ y: -1000 }}
+          >
+          &#10003; Gracias por tu compra &#9787;
+        </motion.h2>
+        )}
+      </AnimatePresence> */}
+
+      <h2>&#10003; Gracias por tu compra &#9787;</h2>
 
       <motion.p
         variants={childrenVariants}
@@ -56,6 +108,16 @@ const Order = ({ pizza }) => {
         { pizza.toppings.map(topping =>
           <div key={topping}>{topping}</div>) }
       </motion.div>
+
+      <Link to="/home">
+        <motion.button
+          variants={buttonVariants}
+          initial=''
+          whileHover='hover'
+        >
+          Volver al inicio
+        </motion.button>
+      </Link>
     </motion.div>
   )
 }
