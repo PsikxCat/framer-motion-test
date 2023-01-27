@@ -17,6 +17,32 @@ const containerVariants = {
   }
 }
 
+const buttonVariants = {
+  visible: {
+    scale: 1.05,
+    y: -10,
+    boxShadow: '0 3px 9px 1px rgba(255, 255, 255, .6)',
+    transition: {
+      delay: 1,
+      type: 'spring',
+      mass: 1.5
+    }
+  },
+  hover: {
+    // scale: [1, 1.2, 1.1, 1.2, 1.1],
+    // // # keyframes
+    scale: 1.1,
+    textShadow: '0 1px 4px rgba(255, 255, 255, .8)',
+    boxShadow: '0 6px 16px 2px rgba(255, 255, 255, .3)',
+    transition: {
+      yoyo: 4,
+      // # yoyo es similar a los keyframes, con la limitacion de que solo ira del valor inicial al seteado las veces que se configure
+      // type: 'spring', // @ no compatible con yoyo
+      duration: .1
+    }
+  }
+}
+
 const Toppings = ({ addTopping, pizza }) => {
   let toppings = ['champiñones', 'pimientos', 'cebolla', 'aceitunas', 'extra queso', 'tomates'];
 
@@ -45,11 +71,13 @@ const Toppings = ({ addTopping, pizza }) => {
 
       <Link to="/order">
         <motion.button
-          whileHover={{
-            scale: 1.1,
-            textShadow: '0 0 8px rgba(255, 255, 255, .8)',
-            boxShadow: '0 0 8px rgba(255, 255, 255, 1)'
-          }}
+          // whileHover={{
+          //   scale: 1.1,
+          //   textShadow: '0 0 8px rgba(255, 255, 255, .8)',
+          //   boxShadow: '0 0 8px rgba(255, 255, 255, 1)'
+          // }}
+          variants={buttonVariants}
+          whileHover='hover'
         >
           Order
         </motion.button>

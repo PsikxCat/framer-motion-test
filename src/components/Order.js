@@ -12,7 +12,7 @@ const containerVariants = {
     transition: {
       type: 'spring',
       stiffness: 200,
-      mass: 5,
+      mass: 3,
       damping: 40,
       when: 'beforeChildren',
       // & when da el orden en el que se animara, en este caso el contenedor se animara y luego se animaran sus hijos
@@ -28,8 +28,7 @@ const childrenVariants = {
     opacity: 0
   },
   visible: {
-    opacity: .8
-
+    opacity: .8,
   }
 }
 
