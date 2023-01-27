@@ -82,7 +82,7 @@ const Order = ({ pizza }) => {
       animate='visible'
       exit='exit'
     >
-      {/* // # forma de animar la salida de elementos que se borrar del DOM */}
+      {/* // # forma de animar la salida de elementos que se borran del DOM */}
       {/* <AnimatePresence>
         {showTitle && (
           <motion.h2

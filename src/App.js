@@ -31,7 +31,8 @@ function App() {
     <>
       <Header />
 
-      <AnimatePresence exitBeforeEnter>
+      {/* <AnimatePresence exitBeforeEnter> // ! exitBeforEnter deprecated  for mode='wait' */}
+      <AnimatePresence mode='wait' >
         <Switch location={location} key={location.key}>
           {/* // @ propiedades location y key necesarias para funcionamiento de salida animada de componentes */}
           <Route path="/base">
