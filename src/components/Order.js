@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -39,41 +39,22 @@ const childrenVariants = {
   }
 }
 
-const buttonVariants = {
-  hidden: {
-    opacity: 0,
-    x: '100vw',
-    y: 30
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 30,
-    scale: 1.05,
-    boxShadow: '0 3px 9px 1px rgba(255, 255, 255, .6)',
-    transition: {
-      delay: 2,
-      mass: 1.5
-    }
-  },
-  hover: {
-    scale: 1.1,
-    textShadow: '0 1px 4px rgba(255, 255, 255, .8)',
-    boxShadow: '0 6px 16px 2px rgba(255, 255, 255, .3)',
-    transition: {
-      yoyo: 4,
-      duration: .1
-    }
-  }
-}
-
-
-const Order = ({ pizza }) => {
+const Order = ({ pizza, setShowModal }) => {
   // const [showTitle, setShowTitle] = useState(true);
-
+  // # test inicial de AnimatePresence
   // setTimeout(() => {
   //   setShowTitle(false);
   // }, 4000);
+
+  // @ forma correcta de setTimeOut (limpia el timeOut)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(true)
+    }, 5000);
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [setShowModal])
 
   return (
     <motion.div className="container order"
@@ -109,15 +90,6 @@ const Order = ({ pizza }) => {
           <div key={topping}>{topping}</div>) }
       </motion.div>
 
-      <Link to="/home">
-        <motion.button
-          variants={buttonVariants}
-          initial=''
-          whileHover='hover'
-        >
-          Volver al inicio
-        </motion.button>
-      </Link>
     </motion.div>
   )
 }
